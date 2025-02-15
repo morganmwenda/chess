@@ -13,7 +13,7 @@ IMAGES = {}
 def loadImages():
     pieces = ["wp", "wR", "wN", "wB", "wQ", "wK", "bp", "bR", "bN", "bB", "bQ", "bK"]
     for piece in pieces:
-        IMAGES[piece] = p.transform.scale(p.image.load("images/" + piece + ".png"), (SQ_SIZE, SQ_SIZE))
+        IMAGES[piece] = p.transform.scale(p.image.load("../images/" + piece + ".png"), (SQ_SIZE, SQ_SIZE))
     # Note: we can access an image by saying 'IMAGES['wp']'
     # Additional functionality can be added here if needed
     
