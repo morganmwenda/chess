@@ -77,7 +77,7 @@ def drawGameState(screen, gs):
 
 #draw the squares on the board. the top left square is always light
 def drawBoard(screen):
-    colors = [p.Color("white"), p.Color("gray")]
+    colors = [p.Color(222, 184, 135), p.Color(139, 69, 19)]
     for r in range(DIMENSION):
         for c in range(DIMENSION):
             color = colors[((r+c) % 2)]
