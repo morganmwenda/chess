@@ -179,7 +179,7 @@ class Move():
         self.pieceMoved = board[self.startRow][self.startCol]
         self.pieceCaptured = board[self.endRow][self.endCol]
         self.moveID = self.startRow*1000 + self.startCol*100 + self.endRow*10 + self.endCol #unique id for each move
-        print(self.moveID)
+        
     
     #overriding the equals method
     def __eq__(self,other):
