@@ -100,14 +100,14 @@ class GameState:
                 endCol = c + d[1] * i
                 if 0 <= endRow < 8 and 0 <= endCol < 8:
                     endPiece = self.board[endRow][endCol]
-                    if endPiece == "--":
+                    if endPiece == "--": #empty space valid
                         moves.append(Move((r, c), (endRow, endCol), self.board))
-                    elif endPiece[0] == enemyColor:
+                    elif endPiece[0] == enemyColor: #enemy piece valid
                         moves.append(Move((r, c), (endRow, endCol), self.board))
                         break
-                    else:
+                    else: #friendly piece invalid
                         break
-                else:
+                else: #off board invalid
                     break
 
     #get all the knight moves for the knight located at row, col and add these moves to the list
@@ -119,7 +119,7 @@ class GameState:
             endCol = c + m[1]
             if 0 <= endRow < 8 and 0 <= endCol < 8:
                 endPiece = self.board[endRow][endCol]
-                if endPiece == "--" or endPiece[0] != allyColor:
+                if endPiece[0] != allyColor:
                     moves.append(Move((r, c), (endRow, endCol), self.board))
 
     #get all the bishop moves for the bishop located at row, col and add these moves to the list
@@ -156,7 +156,7 @@ class GameState:
             endCol = c + kingMoves[i][1]
             if 0 <= endRow < 8 and 0 <= endCol < 8:
                 endPiece = self.board[endRow][endCol]
-                if endPiece == "--" or endPiece[0] != allyColor:
+                if endPiece[0] != allyColor:
                     moves.append(Move((r, c), (endRow, endCol), self.board))
     
 
