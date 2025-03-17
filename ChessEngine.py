@@ -319,26 +319,34 @@ class GameState:
                 checkRow = check[0]
                 checkCol = check[1]
                 pieceChecking = self.board[checkRow][checkCol]
-                validSquares = [] #squares that the king can move to
+                validSquares = [] # squares that the king can move to
                 
                 if pieceChecking[1] == 'N':
                     validSquares = [(checkRow, checkCol)]
                 else:
-                    for i in range(1,8):
+                    for i in range(1, 8):
                         validSquare = (kingRow + check[2] * i, kingCol + check[3] * i)
                         validSquares.append(validSquare)
                         if validSquare[0] == checkRow and validSquare[1] == checkCol:
                             break
-                #get rid of any moves that don't get the king out of check or move into check
-                for i in range(len(moves)-1, -1, -1):
+                # get rid of any moves that don't get the king out of check or move into check
+                for i in range(len(moves) - 1, -1, -1):
                     if moves[i].pieceMoved[1] != 'K':
                         if not (moves[i].endRow, moves[i].endCol) in validSquares:
                             moves.remove(moves[i])
             else: #double check, king has to move
                 self.getKingMoves(kingRow, kingCol, moves)        
         else:
-
             moves = self.getAllPossibleMoves()
+        
+        # Check if any move leaves the king in check
+        for i in range(len(moves) - 1, -1, -1):
+            self.makeMove(moves[i])
+            self.whiteToMove = not self.whiteToMove
+            if self.inCheck:
+                moves.remove(moves[i])
+            self.whiteToMove = not self.whiteToMove
+            self.undoMove()
             
         return moves
     
